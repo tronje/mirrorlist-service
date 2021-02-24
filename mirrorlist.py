@@ -84,11 +84,11 @@ def main():
         log(f"Output file {outfile} does not yet exist!")
 
     mirrors = select_mirrors(infile, country)
+    mirrors = prepare_mirrors(mirrors, https_only)
     if not mirrors:
         log(f"No mirrors available for country {country} in {infile}")
         return 1
 
-    mirrors = prepare_mirrors(mirrors, https_only)
     with open(outfile, "w") as f:
         f.write(f"## Generated from {infile} with mirrorlist.py ##\n")
         f.write("\n".join(mirrors) + "\n")
