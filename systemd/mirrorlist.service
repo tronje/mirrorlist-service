@@ -1,0 +1,10 @@
+[Unit]
+Description="Update mirrorlist from mirrorlist.pacnew, if the latter exists"
+ConditionPathExists=/etc/pacman.d/mirrorlist.pacnew
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/mirrorlist.py -d /etc/pacman.d/ -c Germany -s
+
+[Install]
+WantedBy=multi-user.target

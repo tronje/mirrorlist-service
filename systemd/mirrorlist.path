@@ -1,0 +1,5 @@
+[Path]
+PathExists=/etc/pacman.d/mirrorlist.pacnew
+
+[Install]
+WantedBy=multi-user.target
