@@ -4,6 +4,7 @@ import argparse
 import time
 import sys
 import os
+import re
 
 
 def log(msg):
@@ -38,6 +39,7 @@ def parse_args():
 def select_mirrors(filename, country):
     record = False
     mirrors = []
+    country_start = re.compile(f"## {country}")
     with open(filename, "r") as f:
         for line in f:
             line = line.strip()
@@ -48,7 +50,7 @@ def select_mirrors(filename, country):
                 else:
                     mirrors.append(line)
             else:
-                if country in line:
+                if country_start.fullmatch(line):
                     # beginning of country block
                     record = True
     return mirrors
